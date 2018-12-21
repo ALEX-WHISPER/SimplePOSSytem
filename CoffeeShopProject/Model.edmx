@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CoffeeShopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductType" Type="int" Nullable="false" />
+          <Property Name="ProName" Type="nchar" MaxLength="10" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <EntityType Name="TblProType">
+          <Key>
+            <PropertyRef Name="ProductType" />
+          </Key>
+          <Property Name="ProductType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblTransaction">
+          <Key>
+            <PropertyRef Name="TransID" />
+          </Key>
+          <Property Name="TransID" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="TransDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TblTransItem">
+          <Key>
+            <PropertyRef Name="TransItemID" />
+          </Key>
+          <Property Name="TransItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransID" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductCount" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TblProduc__Produ__37A5467C">
+          <End Role="TblProType" Type="Self.TblProType" Multiplicity="1" />
+          <End Role="TblProduct" Type="Self.TblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProType">
+              <PropertyRef Name="ProductType" />
+            </Principal>
+            <Dependent Role="TblProduct">
+              <PropertyRef Name="ProductType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblTransI__Produ__36B12243">
+          <End Role="TblProduct" Type="Self.TblProduct" Multiplicity="1" />
+          <End Role="TblTransItem" Type="Self.TblTransItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProduct">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TblTransItem">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblTransI__Trans__5CD6CB2B">
+          <End Role="TblTransaction" Type="Self.TblTransaction" Multiplicity="1" />
+          <End Role="TblTransItem" Type="Self.TblTransItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblTransaction">
+              <PropertyRef Name="TransID" />
+            </Principal>
+            <Dependent Role="TblTransItem">
+              <PropertyRef Name="TransID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CoffeeShopDBModelStoreContainer">
+          <EntitySet Name="TblProduct" EntityType="Self.TblProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblProType" EntityType="Self.TblProType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblTransaction" EntityType="Self.TblTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblTransItem" EntityType="Self.TblTransItem" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TblProduc__Produ__37A5467C" Association="Self.FK__TblProduc__Produ__37A5467C">
+            <End Role="TblProType" EntitySet="TblProType" />
+            <End Role="TblProduct" EntitySet="TblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblTransI__Produ__36B12243" Association="Self.FK__TblTransI__Produ__36B12243">
+            <End Role="TblProduct" EntitySet="TblProduct" />
+            <End Role="TblTransItem" EntitySet="TblTransItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblTransI__Trans__5CD6CB2B" Association="Self.FK__TblTransI__Trans__5CD6CB2B">
+            <End Role="TblTransaction" EntitySet="TblTransaction" />
+            <End Role="TblTransItem" EntitySet="TblTransItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CoffeeShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CoffeeShopDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblProduct" EntityType="CoffeeShopDBModel.TblProduct" />
+          <EntitySet Name="TblProType" EntityType="CoffeeShopDBModel.TblProType" />
+          <EntitySet Name="TblTransaction" EntityType="CoffeeShopDBModel.TblTransaction" />
+          <EntitySet Name="TblTransItem" EntityType="CoffeeShopDBModel.TblTransItem" />
+          <AssociationSet Name="FK__TblProduc__Produ__37A5467C" Association="CoffeeShopDBModel.FK__TblProduc__Produ__37A5467C">
+            <End Role="TblProType" EntitySet="TblProType" />
+            <End Role="TblProduct" EntitySet="TblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblTransI__Produ__36B12243" Association="CoffeeShopDBModel.FK__TblTransI__Produ__36B12243">
+            <End Role="TblProduct" EntitySet="TblProduct" />
+            <End Role="TblTransItem" EntitySet="TblTransItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblTransI__Trans__5CD6CB2B" Association="CoffeeShopDBModel.FK__TblTransI__Trans__5CD6CB2B">
+            <End Role="TblTransaction" EntitySet="TblTransaction" />
+            <End Role="TblTransItem" EntitySet="TblTransItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TblProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductType" Type="Int32" Nullable="false" />
+          <Property Name="ProName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TblProType" Relationship="CoffeeShopDBModel.FK__TblProduc__Produ__37A5467C" FromRole="TblProduct" ToRole="TblProType" />
+          <NavigationProperty Name="TblTransItem" Relationship="CoffeeShopDBModel.FK__TblTransI__Produ__36B12243" FromRole="TblProduct" ToRole="TblTransItem" />
+        </EntityType>
+        <EntityType Name="TblProType">
+          <Key>
+            <PropertyRef Name="ProductType" />
+          </Key>
+          <Property Name="ProductType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblProduct" Relationship="CoffeeShopDBModel.FK__TblProduc__Produ__37A5467C" FromRole="TblProType" ToRole="TblProduct" />
+        </EntityType>
+        <EntityType Name="TblTransaction">
+          <Key>
+            <PropertyRef Name="TransID" />
+          </Key>
+          <Property Name="TransID" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="TransDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TblTransItem" Relationship="CoffeeShopDBModel.FK__TblTransI__Trans__5CD6CB2B" FromRole="TblTransaction" ToRole="TblTransItem" />
+        </EntityType>
+        <EntityType Name="TblTransItem">
+          <Key>
+            <PropertyRef Name="TransItemID" />
+          </Key>
+          <Property Name="TransItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransID" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblProduct" Relationship="CoffeeShopDBModel.FK__TblTransI__Produ__36B12243" FromRole="TblTransItem" ToRole="TblProduct" />
+          <NavigationProperty Name="TblTransaction" Relationship="CoffeeShopDBModel.FK__TblTransI__Trans__5CD6CB2B" FromRole="TblTransItem" ToRole="TblTransaction" />
+          <Property Name="ProductCount" Type="Int16" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TblProduc__Produ__37A5467C">
+          <End Type="CoffeeShopDBModel.TblProType" Role="TblProType" Multiplicity="1" />
+          <End Type="CoffeeShopDBModel.TblProduct" Role="TblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProType">
+              <PropertyRef Name="ProductType" />
+            </Principal>
+            <Dependent Role="TblProduct">
+              <PropertyRef Name="ProductType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblTransI__Produ__36B12243">
+          <End Type="CoffeeShopDBModel.TblProduct" Role="TblProduct" Multiplicity="1" />
+          <End Type="CoffeeShopDBModel.TblTransItem" Role="TblTransItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProduct">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TblTransItem">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblTransI__Trans__5CD6CB2B">
+          <End Type="CoffeeShopDBModel.TblTransaction" Role="TblTransaction" Multiplicity="1" />
+          <End Type="CoffeeShopDBModel.TblTransItem" Role="TblTransItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblTransaction">
+              <PropertyRef Name="TransID" />
+            </Principal>
+            <Dependent Role="TblTransItem">
+              <PropertyRef Name="TransID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CoffeeShopDBModelStoreContainer" CdmEntityContainer="CoffeeShopDBEntities1">
+          <EntitySetMapping Name="TblProduct">
+            <EntityTypeMapping TypeName="CoffeeShopDBModel.TblProduct">
+              <MappingFragment StoreEntitySet="TblProduct">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblProType">
+            <EntityTypeMapping TypeName="CoffeeShopDBModel.TblProType">
+              <MappingFragment StoreEntitySet="TblProType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblTransaction">
+            <EntityTypeMapping TypeName="CoffeeShopDBModel.TblTransaction">
+              <MappingFragment StoreEntitySet="TblTransaction">
+                <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblTransItem">
+            <EntityTypeMapping TypeName="CoffeeShopDBModel.TblTransItem">
+              <MappingFragment StoreEntitySet="TblTransItem">
+                <ScalarProperty Name="ProductCount" ColumnName="ProductCount" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="TransID" ColumnName="TransID" />
+                <ScalarProperty Name="TransItemID" ColumnName="TransItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

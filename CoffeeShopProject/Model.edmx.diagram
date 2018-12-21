@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eae8776e17ff4870a946e6913a50c518" Name="Diagram1">
+        <EntityTypeShape EntityType="CoffeeShopDBModel.TblProduct" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="CoffeeShopDBModel.TblProType" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="CoffeeShopDBModel.TblTransaction" Width="1.5" PointX="3" PointY="5.25" />
+        <EntityTypeShape EntityType="CoffeeShopDBModel.TblTransItem" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="CoffeeShopDBModel.FK__TblProduc__Produ__37A5467C" />
+        <AssociationConnector Association="CoffeeShopDBModel.FK__TblTransI__Produ__36B12243" />
+        <AssociationConnector Association="CoffeeShopDBModel.FK__TblTransI__Trans__5CD6CB2B" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
