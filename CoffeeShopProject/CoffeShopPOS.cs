@@ -111,7 +111,7 @@ namespace CoffeeShopProject {
                 var tabPageKey = val2keyDic[curTab.Text];
 
                 var filteredProducts = new ObjectQuery<TblProduct> (
-                    "SELECT VALUE product FROM TblProduct AS product WHERE product.ProductType = " + tabPageKey, 
+                    "SELECT VALUE product FROM TblProduct AS product WHERE product.ProductType = " + tabPageKey,
                     ((IObjectContextAdapter)cse).ObjectContext
                 );
 
