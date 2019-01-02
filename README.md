@@ -70,28 +70,28 @@
         - Example:
 ``` c#
 using (SqlConnection connection = new SqlConnection(connectionString)) {
-                using(var cmd = new SqlCommand(query, cn)) {
-                    //	parametrized queries
-                    ...
-                    
-                    cn.Open();
-                    cmd.ExecuteNonQuery(); 
-                    cn.Close();
-                    ...
-                }
+    using(var cmd = new SqlCommand(query, cn)) {
+        //	parametrized queries
+        ...
+
+        cn.Open();
+        cmd.ExecuteNonQuery(); 
+        cn.Close();
+        ...
+    }
 }  
 ```
 	- SqlCommand
 		- Always use [parameterized queries](https://blog.codinghorror.com/give-me-parameterized-sql-or-give-me-death/), the strings concatenation opens your app to SQL injection attacks
 		- Example:
-		``` c#
-        using (var cmd = new SqlCommand("", connection)) {
-                if (connection.State != System.Data.ConnectionState.Open)
-                    return;
-                cmd.CommandText = "INSERT INTO TblTransaction(TransID, TransDate) VALUES (@TID, @date)";
-                cmd.Parameters.AddWithValue("@TID", transID);
-                cmd.Parameters.AddWithValue("@date", transDate);
-                
-                cmd.ExecuteNonQuery();
-        ```
+``` c#
+using (var cmd = new SqlCommand("", connection)) {
+        if (connection.State != System.Data.ConnectionState.Open)
+            return;
+        cmd.CommandText = "INSERT INTO TblTransaction(TransID, TransDate) VALUES (@TID, @date)";
+        cmd.Parameters.AddWithValue("@TID", transID);
+        cmd.Parameters.AddWithValue("@date", transDate);
+
+        cmd.ExecuteNonQuery();
+```
 + [Difference with local database](https://www.codeproject.com/Questions/312261/Confused-in-Local-Database-and-Service-Based-Datab)
